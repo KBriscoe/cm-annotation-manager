@@ -1,0 +1,40 @@
+/*CONTAINERS*/
+
+.LF-loginheader-ctn {
+    width:100%;
+    margin-bottom:40px;
+}
+
+.LF-loginfield-ctn {
+    width:22vw;
+}
+
+.LF-login-ctn {
+    width:22vw;
+    height:100vh;
+    padding:20px;
+    background:#EEE;
+}
+
+.LF-register-ctn {
+    position: relative;
+    bottom:0;
+}
+
+.LF-login-btn {
+    width:80px;
+    height:30px;
+    float:right;
+    margin-top:15px !important;
+    font-size:12px !important;
+}
+
+.LF-register-btn {
+    width:120px;
+    height:30px;
+}
+
+.LF-adornment {
+    width:16px;
+    height:18px;
+}
