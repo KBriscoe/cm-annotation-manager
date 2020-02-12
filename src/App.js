@@ -6,6 +6,7 @@ import { authenticationService } from '@/_services';
 import { PrivateRoute } from '@/_components';
 import { Landing } from './Landing.jsx';
 import { LoginPage } from './LoginPage.jsx';
+import { ProjectCreation } from './ProjectCreation.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -34,11 +35,13 @@ class App extends React.Component {
                         <nav className="navbar navbar-expand navbar-dark bg-dark">
                             <div className="navbar-nav">
                                 <Link to="/" className="nav-item nav-link">Home</Link>
+                                <Link to="/projectcreation" className="nav-item nav-link">Linker</Link>
                                 <a onClick={this.logout} className="nav-item nav-link">Logout</a>
                             </div>
                         </nav>
                     }
                     <PrivateRoute exact path="/" component={Landing} />
+                    <PrivateRoute path="/projectcreation" component={ProjectCreation} />
                     <Route path="/login" component={LoginPage} />
                 </div>
             </Router>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { userService, authenticationService } from '@/_services';
 
-class Landing extends Component {
+class ProjectCreation extends Component {
     constructor(props){
         super(props);
 
@@ -12,18 +12,15 @@ class Landing extends Component {
         };   
     }
 
-    componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
-    }
-
     render() {
         return(
             <div className='LF-login-ctn'>
             <div>{this.state.currentUser.firstName}</div>
+            <div>This is project creation</div>
             </div>
         )
         }
 
 };
     
-export { Landing };
+export { ProjectCreation };

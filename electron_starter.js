@@ -12,7 +12,7 @@ function createWindow() {
 
   // Show dev tools
   // Remove this line before distributing
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Remove window once app is closed
   win.on('closed', function () {
