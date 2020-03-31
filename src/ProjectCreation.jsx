@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button,TextField } from '@material-ui/core';
+import { Button, TextField, Chip } from '@material-ui/core';
 
 import { userService, authenticationService } from '@/_services';
 
@@ -14,10 +14,19 @@ class ProjectCreation extends Component {
             projectTitle: null,
             description: null,
             rules: null,
-            labels: null,
+            labels: [],
             dataUpload:null,
+        
         };   
+
+
     }
+    onChange = labels => {
+        this.setState({ labels});
+    }
+
+
+    
 
     render() {
         return(
@@ -47,11 +56,14 @@ class ProjectCreation extends Component {
                     label="labels" 
                     variant="outlined"
                     onChange = {(event, newValue) => this.setState({labels:newValue})} />
+
                   </div>
+                  
                 <Button variant="contained" color="primary">Create Project</Button>
             </div>            
         )
         }
+        
 
 
 };
