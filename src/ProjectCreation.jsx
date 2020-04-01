@@ -25,14 +25,11 @@ class ProjectCreation extends Component {
         userService.getAll().then(users => this.setState({ users }));
     }
 
+
     handleLabelDelete = (label) => {
-        //The label that comes here needs to be removed from state
-
-        //to remove from state, make a copy of the state
-
-        //adjust that value by removing the correct item by it's key
-        //updatedChips = chips.filter((chip) => chip.key !== chipToDelete.key);
-        //then set the new state with the updated array with setState
+        this.setState({
+            labels: this.state.labels.filter(i => i !== label)
+          });
     }
 
     displayAnnotationLabels = () => {
@@ -43,7 +40,7 @@ class ProjectCreation extends Component {
                 {currentLabels.map((label) => (
                     <Chip 
                     label={label}
-                    onDelete={e=>this.handleLabelDelete(e, {label})}
+                    onDelete={() => this.handleLabelDelete(label)}
                     >
                     </Chip>
                 ))}
@@ -75,11 +72,13 @@ class ProjectCreation extends Component {
                     variant="outlined"
                     onChange = {(event, newValue) => this.setState({rules:newValue})} />
                     {this.displayAnnotationLabels()}
+                    <Button variant = "contained" size="medium" >Add +</Button>
+
 
                   </div>
                   
                 <Button variant="contained" color="primary">Create Project</Button>
-            </div>            
+                </div>            
         )
         }
         
