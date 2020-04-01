@@ -14,20 +14,43 @@ class ProjectCreation extends Component {
             projectTitle: null,
             description: null,
             rules: null,
-            labels: [],
+            labels: ['one', 'two', 'three'],
             dataUpload:null,
-        
         };   
 
 
     }
-    onChange = labels => {
-        this.setState({ labels});
+
+    componentDidMount() {
+        userService.getAll().then(users => this.setState({ users }));
     }
 
+    handleLabelDelete = (label) => {
+        //The label that comes here needs to be removed from state
 
+        //to remove from state, make a copy of the state
+
+        //adjust that value by removing the correct item by it's key
+        //updatedChips = chips.filter((chip) => chip.key !== chipToDelete.key);
+        //then set the new state with the updated array with setState
+    }
+
+    displayAnnotationLabels = () => {
+        var currentLabels = []
+        currentLabels = this.state.labels
+        return(
+            <div>
+                {currentLabels.map((label) => (
+                    <Chip 
+                    label={label}
+                    onDelete={e=>this.handleLabelDelete(e, {label})}
+                    >
+                    </Chip>
+                ))}
+            </div>
+        )
+    }
     
-
     render() {
         return(
             <div className='LF-login-ctn'>
@@ -51,11 +74,7 @@ class ProjectCreation extends Component {
                     label="rules" 
                     variant="outlined"
                     onChange = {(event, newValue) => this.setState({rules:newValue})} />
-                    <TextField 
-                    id="outlined-basic" 
-                    label="labels" 
-                    variant="outlined"
-                    onChange = {(event, newValue) => this.setState({labels:newValue})} />
+                    {this.displayAnnotationLabels()}
 
                   </div>
                   
