@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, TextField, Chip } from '@material-ui/core';
+import { Button, TextField, Chip, Input } from '@material-ui/core';
 
 import { userService, authenticationService } from '@/_services';
 
@@ -14,6 +14,7 @@ class ProjectCreation extends Component {
             projectTitle: null,
             description: null,
             rules: null,
+            value: "",
             labels: ['one', 'two', 'three'],
             dataUpload:null,
         };   
@@ -47,6 +48,34 @@ class ProjectCreation extends Component {
             </div>
         )
     }
+
+    handleAddLabel = evt => {
+
+        var currentLabels = []
+        currentLabels = this.state.labels
+
+        if (["Enter", "Tab", ","].includes(evt.key)){
+            evt.preventDefault();
+
+            var value = this.state.value.trim();
+            currentLabels.push(value)
+            console.log(value)
+            this.setState({
+                labels: currentLabels,
+                value: ""
+            });
+
+
+            
+        }
+
+    }
+    handleChange = evt => {
+        console.log('handlechange')
+        this.setState({
+          value: evt.target.value,
+        });
+      };
     
     render() {
         return(
@@ -72,9 +101,14 @@ class ProjectCreation extends Component {
                     variant="outlined"
                     onChange = {(event, newValue) => this.setState({rules:newValue})} />
                     {this.displayAnnotationLabels()}
-                    <Button variant = "contained" size="medium" >Add +</Button>
-
-
+                    <Input 
+                    multiline = 'true'
+                    rows = "3"
+                    placeholder = "Type Labels and press 'Enter'"
+                    onKeyDown = {this.handleAddLabel} 
+                    onChange = {this.handleChange}
+                    value = {this.state.value}
+                    />
                   </div>
                   
                 <Button variant="contained" color="primary">Create Project</Button>
