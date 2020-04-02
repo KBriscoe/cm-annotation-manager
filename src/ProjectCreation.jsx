@@ -115,10 +115,5 @@ class ProjectCreation extends Component {
                 </div>            
         )
         }
-        
-
-
 };
-
-    
 export { ProjectCreation };
