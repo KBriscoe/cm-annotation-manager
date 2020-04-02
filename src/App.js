@@ -7,6 +7,7 @@ import { PrivateRoute } from '@/_components';
 import { Landing } from './Landing.jsx';
 import { LoginPage } from './LoginPage.jsx';
 import { ProjectCreation } from './ProjectCreation.jsx';
+import { ProjectView } from './ProjectView.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class App extends React.Component {
                     }
                     <PrivateRoute exact path="/" component={Landing} />
                     <PrivateRoute path="/projectcreation" component={ProjectCreation} />
-                    {/*<PrivateRoute path="/projectview" component={ProjectView} />*/}
+                    <PrivateRoute path="/projectview" component={ProjectView} />
                     <Route path="/login" component={LoginPage} />
                 </div>
             </Router>
