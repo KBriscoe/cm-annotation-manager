@@ -7,6 +7,7 @@ import { PrivateRoute } from '@/_components';
 import { Landing } from './Landing.jsx';
 import { LoginPage } from './LoginPage.jsx';
 import { ProjectCreation } from './ProjectCreation.jsx';
+import { ProjectView } from './ProjectView.jsx';
 
 class App extends React.Component {
     constructor(props) {
