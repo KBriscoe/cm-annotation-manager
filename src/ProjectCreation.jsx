@@ -14,6 +14,7 @@ class ProjectCreation extends Component {
             projectTitle: null,
             description: null,
             rules: null,
+            key: null,
             value: "",
             labels: ['one', 'two', 'three'],
             dataUpload:null,
@@ -38,8 +39,9 @@ class ProjectCreation extends Component {
         currentLabels = this.state.labels
         return(
             <div>
-                {currentLabels.map((label) => (
+                {currentLabels.map((label, i) => (
                     <Chip 
+                    key = {i}
                     label={label}
                     onDelete={() => this.handleLabelDelete(label)}
                     >
