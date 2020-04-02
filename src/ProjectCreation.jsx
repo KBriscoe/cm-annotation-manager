@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Chip, Input } from '@material-ui/core';
-
+import ReactFileReader from 'react-file-reader';
 import { userService, authenticationService } from '@/_services';
 
 class ProjectCreation extends Component {
@@ -66,11 +65,11 @@ class ProjectCreation extends Component {
                 labels: currentLabels,
                 value: ""
             });
-
-
-            
         }
-
+    }
+    //TODO parse file?
+    handleFiles = files =>{
+        console.log(files)
     }
     handleChange = evt => {
         console.log('handlechange')
@@ -81,7 +80,7 @@ class ProjectCreation extends Component {
     
     render() {
         return(
-            <div className='LF-login-ctn'>
+            <div>
                 <div>{this.state.currentUser.firstName}</div>
                 <div>This is project creation</div>
                 <div className = 'project-creation-form'>
@@ -111,6 +110,10 @@ class ProjectCreation extends Component {
                     onChange = {this.handleChange}
                     value = {this.state.value}
                     />
+                    <ReactFileReader handleFiles={this.handleFiles}>
+                        <button className='btn'>Upload</button>
+                    </ReactFileReader>
+
                   </div>
                   
                 <Button variant="contained" color="primary">Create Project</Button>
