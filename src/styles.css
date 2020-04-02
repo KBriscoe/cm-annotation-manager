@@ -38,3 +38,39 @@
     width:16px;
     height:18px;
 }
+
+.VC-Login-viw{
+  background-color: #ADD8E6;
+  width: 500px;
+  height: 100px;
+  position: fixed;
+  left: 30%;
+  top: 20%;
+  transform: translate(-30%, -25%);
+  outline: solid black;
+}
+
+h1 {
+    left: 0px;
+    line-height: 200px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: left;
+    top: 50%;
+    width: 100%;
+    font-size: 20px;
+}
+
+p1 {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 16px; 
+}
+
+p2{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 14px;
+}

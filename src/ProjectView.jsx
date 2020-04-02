@@ -7,17 +7,20 @@ class ProjectView extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-        };   
+            projects: []
+        };      
     }
 
     setProjectValues = () => {
         var project = {
-            id:-1,
+            id:0,
             title:'',
             date:'',
-            currentAnnotated:-1,
-            totalAnnotated:-1
+            currentAnnotated:0,
+            totalAnnotated:0
           };
+
+          
     }
 
     render() {
@@ -25,12 +28,14 @@ class ProjectView extends Component {
             <div>
                 <div>{this.state.currentUser.firstName}</div>
                 <div>This is project view!</div>
-                <div>Project Title</div>
-                <div>Items annotated</div>
+                <div className='VC-Login-viw'>
+                <h1>Project Title</h1>
+                <p1>0 out of 100 Items annotated</p1>
+                <p2>Date Assigned</p2>
+                </div>
             </div>            
         )
         }
 };
 
-    
 export { ProjectView };
