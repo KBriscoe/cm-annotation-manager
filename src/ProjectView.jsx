@@ -12,11 +12,11 @@ class ProjectView extends Component {
 
     setProjectValues = () => {
         var project = {
-            id=-1,
-            title='',
-            date='',
-            currentAnnotated=-1,
-            totalAnnotated=-1
+            id:-1,
+            title:'',
+            date:'',
+            currentAnnotated:-1,
+            totalAnnotated:-1
           };
     }
 
@@ -26,7 +26,7 @@ class ProjectView extends Component {
                 <div>{this.state.currentUser.firstName}</div>
                 <div>This is project view!</div>
                 <div>Project Title</div>
-                <div>Items annotatedrfe</div>
+                <div>Items annotated</div>
             </div>            
         )
         }
