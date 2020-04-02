@@ -43,7 +43,7 @@ class App extends React.Component {
                     }
                     <PrivateRoute exact path="/" component={Landing} />
                     <PrivateRoute path="/projectcreation" component={ProjectCreation} />
-                    {/*<PrivateRoute path="/projectview" component={ProjectView} />*/}
+                    <PrivateRoute path="/projectview" component={ProjectView} />
                     <Route path="/login" component={LoginPage} />
                 </div>
             </Router>
