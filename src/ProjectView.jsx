@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Button from '@material-ui/core/Button';
 import { userService, authenticationService } from '@/_services';
 
 class ProjectView extends Component {
@@ -11,12 +11,24 @@ class ProjectView extends Component {
         };   
     }
 
+    setProjectValues = () => {
+        var project = {
+            id=-1,
+            title='',
+            date='',
+            currentAnnotated=-1,
+            totalAnnotated=-1
+          };
+    }
+
     render() {
         return(
-            <div className='LF-login-ctn'>
+            <div>
                 <div>{this.state.currentUser.firstName}</div>
                 <div>This is project view!</div>
-                </div>            
+                <div>Project Title</div>
+                <div>Items annotatedrfe</div>
+            </div>            
         )
         }
 };
