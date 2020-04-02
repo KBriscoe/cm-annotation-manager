@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import { userService, authenticationService } from '@/_services';
+import { authenticationService } from '@/_services';
 
 class Landing extends Component {
     constructor(props){
@@ -8,18 +7,16 @@ class Landing extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-            users: null
         };   
     }
 
     componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
+        authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }), err => console.log(err));
     }
 
     render() {
         return(
             <div className='LF-login-ctn'>
-            <div>{this.state.currentUser.firstName}</div>
             </div>
         )
         }

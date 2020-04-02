@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { userService, authenticationService } from '@/_services';
+import { authenticationService } from '@/_services';
 
 class ProjectView extends Component {
     constructor(props){
@@ -8,31 +8,44 @@ class ProjectView extends Component {
         this.state = {
             currentUser: authenticationService.currentUserValue,
             projects: []
-        };      
+        };
     }
 
-    setProjectValues = () => {
+    setProjectValues = (id, title, date, currentAnnotated, totalAnnotated) => {
+        projects = []
+        projects = this.state.projects
         var project = {
-            id:0,
-            title:'',
-            date:'',
-            currentAnnotated:0,
-            totalAnnotated:0
-          };
+            id:id,
+            title:title,
+            date:date,
+            currentAnnotated:currentAnnotated,
+            totalAnnotated:totalAnnotated
+        };
+        projects.push(project)
+        this.setState({projects:projects}, () => {})
+    }
 
-          
+    displayProjects = () => {
+        var currentProjects = []
+        currentProjects = this.state.projects
+        return(
+            <div>
+                {currentProjects.map((project) => (
+                    <div className='PV-project-item'>
+                    <div className='PV-project-title'> {project.title} </div>
+                    <div className='PV-project-date'> {project.date} </div>
+                    <div className='PV-project-status'> {project.currentAnnotated} of {project.totalAnnotated} items annotated </div>
+                    </div>
+                ))}
+            </div>
+        )
     }
 
     render() {
         return(
             <div>
-                <div>{this.state.currentUser.firstName}</div>
                 <div>This is project view!</div>
-                <div className='VC-Login-viw'>
-                <h1>Project Title</h1>
-                <p1>0 out of 100 Items annotated</p1>
-                <p2>Date Assigned</p2>
-                </div>
+                {this.displayProjects()}
             </div>            
         )
         }

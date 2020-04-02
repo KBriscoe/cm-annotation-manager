@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, TextField, Chip, Input } from '@material-ui/core';
 import ReactFileReader from 'react-file-reader';
-import { userService, authenticationService } from '@/_services';
+import { authenticationService} from '@/_services';
 
 class ProjectCreation extends Component {
     constructor(props){
@@ -9,23 +9,29 @@ class ProjectCreation extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-            users: null,
             projectTitle: null,
             description: null,
             rules: null,
             key: null,
             value: "",
-            labels: ['one', 'two', 'three'],
+            labels: ['one', 'two', '111'],
             dataUpload:null,
         };   
-
-
     }
 
     componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
+        authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
     }
 
+    handleTextChange = name => event => {
+        this.setState({[name]:event.target.value}, () => {})
+    }
+
+    handleLabelChange = evt => {
+        this.setState({
+          value: evt.target.value,
+        });
+    };
 
     handleLabelDelete = (label) => {
         this.setState({
@@ -40,7 +46,7 @@ class ProjectCreation extends Component {
             <div>
                 {currentLabels.map((label, i) => (
                     <Chip 
-                    key = {i}
+                    key={i}
                     label={label}
                     onDelete={() => this.handleLabelDelete(label)}
                     >
@@ -48,6 +54,11 @@ class ProjectCreation extends Component {
                 ))}
             </div>
         )
+    }
+
+    createProject = () => {
+        //Create the base project first
+        authenticationService.createProject(this.state.projectTitle, this.state.description, this.state.rules, this.state.labels)
     }
 
     handleAddLabel = evt => {
@@ -67,16 +78,6 @@ class ProjectCreation extends Component {
             });
         }
     }
-    //TODO parse file?
-    handleFiles = files =>{
-        console.log(files)
-    }
-    handleChange = evt => {
-        console.log('handlechange')
-        this.setState({
-          value: evt.target.value,
-        });
-      };
     
     render() {
         return(
@@ -88,35 +89,34 @@ class ProjectCreation extends Component {
                     id="outlined-basic" 
                     label="Title" 
                     variant="outlined"
-                    onChange = {(event, newValue) => this.setState({projectTitle:newValue})} />
+                    onChange = {this.handleTextChange('projectTitle')} />
                     <TextField
                     id="filled-multiline-flexible"
                     label="description"
                     multiline
                     rowsMax="4"
                     variant="outlined"
-                    onChange = {(event, newValue) => this.setState({description:newValue})} />
+                    onChange = {this.handleTextChange('description')} />
                     <TextField 
                     id="outlined-basic" 
                     label="rules" 
                     variant="outlined"
-                    onChange = {(event, newValue) => this.setState({rules:newValue})} />
+                    onChange = {this.handleTextChange('rules')} />
                     {this.displayAnnotationLabels()}
-                    <Input 
-                    multiline = 'true'
-                    rows = "3"
+                    <Input
                     placeholder = "Type Labels and press 'Enter'"
                     onKeyDown = {this.handleAddLabel} 
-                    onChange = {this.handleChange}
+                    onChange = {this.handleLabelChange}
                     value = {this.state.value}
                     />
-                    <ReactFileReader handleFiles={this.handleFiles}>
+                    {/*
+                    <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                         <button className='btn'>Upload</button>
                     </ReactFileReader>
-
+                    */}
                   </div>
                   
-                <Button variant="contained" color="primary">Create Project</Button>
+                <Button variant="contained" color="primary" onClick={e => this.createProject(this.state.projectTitle)}>Create Project</Button>
                 </div>            
         )
         }

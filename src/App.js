@@ -39,6 +39,7 @@ class App extends React.Component {
                                 <Link to="/projectcreation" className="nav-item nav-link">Project Creation</Link>
                                 <Link to="/projectview" className="nav-item nav-link">Project View</Link>
                                 <a onClick={this.logout} className="nav-item nav-link">Logout</a>
+                                <div>{currentUser.Fname}</div>
                             </div>
                         </nav>
                     }
