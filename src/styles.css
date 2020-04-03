@@ -39,7 +39,7 @@
     height:18px;
 }
 
-.VC-Login-viw{
+.PV-project-item{
   background-color: #ADD8E6;
   width: 500px;
   height: 100px;
@@ -50,7 +50,7 @@
   outline: solid black;
 }
 
-h1 {
+.PV-project-title {
     left: 0px;
     line-height: 200px;
     margin-top: -100px;
@@ -61,14 +61,14 @@ h1 {
     font-size: 20px;
 }
 
-p1 {
+.PV-project-status {
     position: absolute;
     bottom: 8px;
     right: 16px;
     font-size: 16px; 
 }
 
-p2{
+.PV-project-date{
   position: absolute;
   top: 8px;
   right: 16px;

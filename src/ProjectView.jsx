@@ -7,7 +7,7 @@ class ProjectView extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-            projects: []
+            projects: [{title:"test project", date:'today', currentAnnotated:0, totalAnnotated:100}]
         };
     }
 
