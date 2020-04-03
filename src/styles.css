@@ -10,7 +10,7 @@
 }
 
 .LF-login-ctn {
-    width:22vw;
+    width:fit-content;
     height:100vh;
     padding:20px;
     background:#EEE;
