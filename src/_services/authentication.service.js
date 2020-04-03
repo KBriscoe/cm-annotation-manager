@@ -35,9 +35,10 @@ function login(username, password) {
 }
 
 function createProject(title, description, rules, labels) {
+    var header = authHeader()
     const requestOptions = {
         method: 'POST',
-        headers: authHeader(),
+        headers: header,
         body: JSON.stringify({ title, description, rules, labels })
     };
     return fetch(`${config.apiUrl}/users/createProject`, requestOptions)
