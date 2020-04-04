@@ -1,5 +1,24 @@
 /*CONTAINERS*/
 
+.clear {
+    clear:both;
+}
+
+.M-view-ctn {
+    width:calc(100%);
+    float:left;
+}
+
+.M-navbar {
+    width:60px;
+    height:100vh;
+    float:left;
+}
+
+.M-navbar-nav {
+    width:60px;
+}
+
 .LF-loginheader-ctn {
     width:100%;
     margin-bottom:40px;
@@ -73,4 +92,62 @@
   top: 8px;
   right: 16px;
   font-size: 14px;
+}
+
+.PC-main-title {
+    font-size:24px;
+    font-weight:bold;
+    padding:10px 0px 10px 10px;
+}
+
+.PC-sub-title {
+    width:100%;
+    font-size:24px;
+    font-weight:bold;
+    text-align: center;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.PC-form-ctn {
+    width:fit-content;
+    margin-left:10%;
+    margin-bottom:20px;
+    float:left;
+    background:#EEE;
+    outline:2px solid #CCC;
+}
+
+.PC-detail-ctn {
+    width:20vw;
+    float:left;
+    background:red;
+}
+
+.PC-textfield-ctn {
+    width:700px;
+    margin:0 auto;
+    padding-bottom:20px;
+}
+
+.PC-textfield-ctn .MuiTextField-root{
+    width:680px;
+    background:#FFF;
+    margin:10px !important;
+}
+
+.PC-label-ctn {
+    width:680px;
+    margin-left:10px !important;
+    margin-bottom:20px !important;
+}
+
+.PC-label-ctn .MuiInput-root{
+    width:280px;
+    margin:10px !important;
+}
+
+.PC-textfield-ctn .MuiButton-root{
+    margin:0px 20px 20px 0px;
+    float:right;
 }

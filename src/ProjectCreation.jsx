@@ -43,7 +43,14 @@ class ProjectCreation extends Component {
         var currentLabels = []
         currentLabels = this.state.labels
         return(
-            <div>
+            <div className='PC-label-ctn'>
+                <Input
+                    placeholder = "Type Labels and press 'Enter'"
+                    onKeyDown = {this.handleAddLabel} 
+                    onChange = {this.handleLabelChange}
+                    value = {this.state.value}
+                />
+                <div className='clear'></div>
                 {currentLabels.map((label, i) => (
                     <Chip 
                     key={i}
@@ -81,42 +88,40 @@ class ProjectCreation extends Component {
     
     render() {
         return(
-            <div>
-                <div>{this.state.currentUser.firstName}</div>
-                <div>This is project creation</div>
-                <div className = 'project-creation-form'>
+            <div className='M-view-ctn'>
+                <div className='PC-main-title'>Project Creation</div>
+                <div className='PC-form-ctn'>
+                    <div className='PC-sub-title'>Create a new Project</div>
+                    <div className='PC-textfield-ctn'>
                     <TextField 
-                    id="outlined-basic" 
+                    className='PC-title-textfield'
                     label="Title" 
                     variant="outlined"
                     onChange = {this.handleTextChange('projectTitle')} />
                     <TextField
-                    id="filled-multiline-flexible"
-                    label="description"
+                    className='PC-desc-textfield'
+                    label="Description"
                     multiline
-                    rowsMax="4"
+                    rows="4"
                     variant="outlined"
                     onChange = {this.handleTextChange('description')} />
                     <TextField 
-                    id="outlined-basic" 
-                    label="rules" 
+                    className='PC-rule-textfield'
+                    multiline
+                    rows="8"
+                    label="Rules" 
                     variant="outlined"
                     onChange = {this.handleTextChange('rules')} />
                     {this.displayAnnotationLabels()}
-                    <Input
-                    placeholder = "Type Labels and press 'Enter'"
-                    onKeyDown = {this.handleAddLabel} 
-                    onChange = {this.handleLabelChange}
-                    value = {this.state.value}
-                    />
                     {/*
                     <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                        <button className='btn'>Upload</button>
+                        <Button className='PC-upload-btn' variant="contained" color="secondary">Upload</Button>
                     </ReactFileReader>
                     */}
+                    <Button className='PC-sumbit-btn' variant="contained" color="primary" onClick={e => this.createProject(this.state.projectTitle)}>Create Project</Button>
+                    </div>
+                    
                   </div>
-                  
-                <Button variant="contained" color="primary" onClick={e => this.createProject(this.state.projectTitle)}>Create Project</Button>
                 </div>            
         )
         }
