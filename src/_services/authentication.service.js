@@ -4,6 +4,7 @@ import cookie from 'react-cookies'
 import config from 'config';
 import { handleResponse } from '@/_helpers';
 import { authHeader } from '../_helpers/auth-header';
+import { responsiveFontSizes } from '@material-ui/core';
 
 const currentUserSubject = new BehaviorSubject((cookie.load('currentUser')));
 
@@ -11,6 +12,7 @@ export const authenticationService = {
     login,
     createProject,
     logout,
+    getUserList,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
@@ -34,22 +36,32 @@ function login(username, password) {
         });
 }
 
-function createProject(title, description, rules, labels) {
+async function createProject(title, description, rules, labels, users) {
     var header = authHeader()
     const requestOptions = {
         method: 'POST',
         headers: header,
-        body: JSON.stringify({ title, description, rules, labels })
+        body: JSON.stringify({ title, description, rules, labels, users })
     };
-    return fetch(`${config.apiUrl}/users/createProject`, requestOptions)
-        .then(handleResponse)
-        .then(response => {
-            console.log(response)
-        })
+    const response = await fetch(`${config.apiUrl}/users/createProject`, requestOptions)
+    const json = await response.json()
+    return json
+}
+
+async function getUserList() {
+    var header = authHeader()
+    const requestOptions = {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify({})
+    };
+    const response = await fetch(`${config.apiUrl}/users/getUserList`, requestOptions)
+    const userList = await response.json();
+    return userList
 }
 
 function logout() {
-    // remove user from local storage to log user out
+    // remove user from cookies to log user out
     cookie.remove('currentUser', { path: '/' })
     currentUserSubject.next(null);
 }

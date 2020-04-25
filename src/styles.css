@@ -108,7 +108,7 @@
     margin-top:10px;
     margin-bottom:10px;
 }
-
+/*
 .PC-form-ctn {
     width:fit-content;
     margin-left:10%;
@@ -117,6 +117,11 @@
     background:#EEE;
     outline:2px solid #CCC;
 }
+*/
+.MuiExpansionPanel-root.Mui-expanded {
+    margin:0 !important;
+}
+
 
 .PC-detail-ctn {
     width:20vw;
@@ -149,5 +154,14 @@
 
 .PC-textfield-ctn .MuiButton-root{
     margin:0px 20px 20px 0px;
+    float:right;
+}
+
+.PC-user-list-ctn .MuiPapaer-root{
+    margin:0px 0px 20px 0px !important;
+}
+
+.PC-submit-ctn .MuiButton-root{
+    margin:20px 20px 20px 20px;
     float:right;
 }
