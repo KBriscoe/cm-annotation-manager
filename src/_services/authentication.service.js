@@ -13,6 +13,7 @@ export const authenticationService = {
     createProject,
     logout,
     getUserList,
+    getProjectList,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
@@ -48,16 +49,28 @@ async function createProject(title, description, rules, labels, users) {
     return json
 }
 
-async function getUserList() {
+async function getUserList(userGroup) {
     var header = authHeader()
     const requestOptions = {
         method: 'POST',
         headers: header,
-        body: JSON.stringify({})
+        body: JSON.stringify({userGroup})
     };
     const response = await fetch(`${config.apiUrl}/users/getUserList`, requestOptions)
     const userList = await response.json();
     return userList
+}
+
+async function getProjectList(userToken) {
+    var header = authHeader()
+    const requestOptions = {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify({userToken})
+    };
+    const response = await fetch(`${config.apiUrl}/users/getProjectList`, requestOptions)
+    const projectList = await response.json();
+    return projectList
 }
 
 function logout() {

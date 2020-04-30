@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { authenticationService } from '@/_services';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 
 class ProjectView extends Component {
     constructor(props){
@@ -7,36 +8,47 @@ class ProjectView extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-            projects: [{title:"test project", date:'today', currentAnnotated:0, totalAnnotated:100}]
+            projectList:[]
         };
+
+        this._isMounted = false
     }
 
-    setProjectValues = (id, title, date, currentAnnotated, totalAnnotated) => {
-        projects = []
-        projects = this.state.projects
-        var project = {
-            id:id,
-            title:title,
-            date:date,
-            currentAnnotated:currentAnnotated,
-            totalAnnotated:totalAnnotated
-        };
-        projects.push(project)
-        this.setState({projects:projects}, () => {})
+    componentDidMount() {
+        authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+        this._isMounted = true
+        this.getProjectList()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+
+    async getProjectList(){
+        if(this._isMounted){
+            console.log("Attempting to get project list...")
+            const projectList = await authenticationService.getProjectList(this.state.currentUser)
+            this.setState({projectList:JSON.parse(projectList)})
+        }
+        
     }
 
     displayProjects = () => {
-        var currentProjects = []
-        currentProjects = this.state.projects
+        var projectList = this.state.projectList;
         return(
             <div>
-                {currentProjects.map((project) => (
-                    <div className='PV-project-item'>
-                    <div className='PV-project-title'> {project.title} </div>
-                    <div className='PV-project-date'> {project.date} </div>
-                    <div className='PV-project-status'> {project.currentAnnotated} of {project.totalAnnotated} items annotated </div>
-                    </div>
-                ))}
+            {projectList.map((project, i) => (
+                <Card
+                key={i}
+                className='PV-project-ctn'
+                >
+                <CardContent>
+                <Typography>Project ID: {project['ProjectID']}</Typography>
+                <Typography>Project Title: {project['Title']}</Typography>
+                <Typography>Project Description: {project['Description']}</Typography>
+                </CardContent>
+                </Card>
+            ))}
             </div>
         )
     }
@@ -44,8 +56,7 @@ class ProjectView extends Component {
     render() {
         return(
             <div>
-                <div>This is project view!</div>
-                {this.displayProjects()}
+            {this.displayProjects()}
             </div>            
         )
         }

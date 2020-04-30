@@ -61,10 +61,17 @@ class ProjectCreation extends Component {
             selectedRows:[],
             expanded:false
         };
+
+        this._isMounted = false
     }
 
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+        this._isMounted = true
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
     }
 
     handleTextChange = name => event => {
@@ -147,22 +154,23 @@ class ProjectCreation extends Component {
           ]}
           
           data={userList}
-          title="Demo Title"
+          title="User List"
           onSelectionChange={(rows) => this.handleRowChange(rows)}
         />
          </div>)
     }
 
     async createProject() {
+        if(this._isMounted){
         //Create the base project first
         const response = await authenticationService.createProject(this.state.projectTitle, this.state.description, this.state.rules, this.state.labels, this.state.selectedRows)
         if(await response === "Success"){
             history.push('/');
         }
+        }
     }
 
     handleAddLabel = evt => {
-
         var currentLabels = []
         currentLabels = this.state.labels
 
